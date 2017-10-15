@@ -1,17 +1,18 @@
 package com.scicraft.seedfinder.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * POJO that contains x & z, as in a minecraft coordinate
+ */
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class XzPair {
-    private int x, z;
-    public XzPair(int x, int z){
-        this.x = x;
-        this.z = z;
-    }
-
-    public int getX(){
-        return x;
-    }
-
-    public int getZ(){
-        return z;
-    }
+    private int x;
+    private int z;
 }

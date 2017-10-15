@@ -60,7 +60,6 @@ public class Biome {
     public static final Biome mesaPlateauF		   = new Biome("Mesa Plateau F",		38,    	typeH);
     public static final Biome mesaPlateau		   = new Biome("Mesa Plateau",		    39,    	typeH);
 
-
     public static final Biome oceanM			   = new Biome("Ocean M",				   128);
     public static final Biome sunflowerPlains	   = new Biome("Sunflower Plains",		   129);
     public static final Biome desertM			   = new Biome("Desert M",				   130);
@@ -102,17 +101,16 @@ public class Biome {
     public static final Biome mesaPlateauFM		   = new Biome("Mesa Plateau F M",		   166);
     public static final Biome mesaPlateauM		   = new Biome("Mesa Plateau M",		   167);
 
-
     public String name;
     public int index;
     public int color;
     public BiomeType type;
 
-    public Biome(String name, int index) {
+    public Biome(final String name, final int index) {
         this(name, index, biomes[index - 128].type.getRare());
     }
 
-    public Biome(String name, int index, BiomeType type) {
+    public Biome(final String name, final int index, final BiomeType type) {
         biomes[index] = this;
         this.name = name;
         this.index = index;
@@ -124,13 +122,12 @@ public class Biome {
         return "Biome."+ name;
     }
 
-    public static int indexFromName(String name) {
+    public static int indexFromName(final String name) {
         Biome biome = biomeMap.get(name);
         if (biome != null)
             return biome.index;
         return -1;
     }
-
 
     public static final class BiomeType { // TODO: Rename once we figure out what this actually is!
         public float value1, value2;
@@ -146,7 +143,5 @@ public class Biome {
             return new BiomeType(value1 + 0.1F, value2 + 0.2F);
         }
     }
-
-
 
 }

@@ -11,8 +11,9 @@ public class BitIterator {
      *
      * @param baseSeed
      */
-    public BitIterator(long baseSeed){
-        this.baseSeed = baseSeed & 281474976710655L;	//magic number check it in binary this removes the first 16 bits
+    public BitIterator(final long baseSeed){
+        //magic number check it in binary this removes the first 16 bits
+        this.baseSeed = baseSeed & 281474976710655L;
         this.current = 0;
     }
 

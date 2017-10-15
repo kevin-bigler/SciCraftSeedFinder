@@ -10,7 +10,7 @@ public abstract class Structure {
      * @param x
      * @return
      */
-    public long xPart(int x){
+    public long xPart(final int x){
         return (long) x * 341873128712L;
     }
 
@@ -20,7 +20,7 @@ public abstract class Structure {
      * @param z
      * @return
      */
-    public long zPart(int z){
+    public long zPart(final int z){
         return (long) z * 132897987541L;
     }
 

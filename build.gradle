@@ -14,5 +14,5 @@ repositories {
 
 dependencies {
     compile project(':minecraft')
-    compile 'org.projectlombok:lombok-maven:1.16.18.1'
+    compileOnly 'org.projectlombok:lombok:1.16.18'
 }

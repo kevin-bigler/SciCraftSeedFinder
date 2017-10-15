@@ -7,28 +7,27 @@ public class BiomeGenerator {
     public GenLayer biomeIndexLayer;
     public GenLayer biomeIndexLayerquarter;
 
-    public BiomeGenerator(long seed, int quarter)
-    {
-        if(quarter == 0)
-            biomeIndexLayer = GenLayer.func_180781_a(seed, "")[1]; //1:1 resolution
-        else if(quarter == 1)
-            biomeIndexLayerquarter = GenLayer.func_180781_a(seed, "")[0]; // 1:4 fourth resolution less calculations
-        else
-        {
+    public BiomeGenerator(final long seed, final int quarter) {
+        if (quarter == 0) {
+            //1:1 resolution
+            biomeIndexLayer = GenLayer.func_180781_a(seed, "")[1];
+        } else if (quarter == 1) {
+            // 1:4 fourth resolution less calculations
+            biomeIndexLayerquarter = GenLayer.func_180781_a(seed, "")[0];
+        } else {
+            // 1:4 fourth resolution less calculations
             biomeIndexLayer = GenLayer.func_180781_a(seed, null)[1];
-            biomeIndexLayerquarter = GenLayer.func_180781_a(seed, "")[0]; // 1:4 fourth resolution less calculations
+            biomeIndexLayerquarter = GenLayer.func_180781_a(seed, "")[0];
         }
 
     }
 
-    public int getBiomeAt(int x, int y)
-    {
+    public int getBiomeAt(final int x, final int y) {
         IntCache.resetIntCache();
         return biomeIndexLayer.getInts(x, y, 1, 1)[0];
     }
 
-    public int[] getBiomeData(int x, int y, int width, int height, boolean quarter)
-    {
+    public int[] getBiomeData(final int x, final int y, final int width, final int height, final boolean quarter) {
         IntCache.resetIntCache();
         if(quarter)
             return biomeIndexLayerquarter.getInts(x, y, width, height);

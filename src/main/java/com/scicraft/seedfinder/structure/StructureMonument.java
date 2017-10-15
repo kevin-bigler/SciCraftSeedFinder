@@ -11,17 +11,17 @@ import java.util.Random;
 public class StructureMonument extends Structure {
     private Random rnd = new Random();
     public static List<Biome> validSurroundingBiomes = Arrays.asList(
-                    Biome.ocean,
-                    Biome.deepOcean,
-                    Biome.frozenOcean,
-                    Biome.river,
-                    Biome.frozenRiver,
-                    // Not sure if the extended biomes count
-                    Biome.oceanM,
-                    Biome.deepOceanM,
-                    Biome.frozenOceanM,
-                    Biome.riverM,
-                    Biome.frozenRiverM
+            Biome.ocean,
+            Biome.deepOcean,
+            Biome.frozenOcean,
+            Biome.river,
+            Biome.frozenRiver,
+            // Not sure if the extended biomes count
+            Biome.oceanM,
+            Biome.deepOceanM,
+            Biome.frozenOceanM,
+            Biome.riverM,
+            Biome.frozenRiverM
     );
 
     /**
@@ -33,7 +33,7 @@ public class StructureMonument extends Structure {
      * @return
      */
     @Override
-    public XzPair structurePosInRegion(long x, long z, long seed){
+    public XzPair structurePosInRegion(final long x, final long z, final long seed){
         rnd.setSeed((long) x * 341873128712L + (long)z * 132897987541L + seed + 10387313);
         return new XzPair((rnd.nextInt(27) + rnd.nextInt(27)) / 2 , (rnd.nextInt(27) + rnd.nextInt(27)) / 2);
     }
@@ -49,7 +49,11 @@ public class StructureMonument extends Structure {
      * @return
      */
     @Override
-    public XzPair structurePosInRegionFast(long xPart, long zPart, long seed, int lowerThen, int higherThen){
+    public XzPair structurePosInRegionFast(final long xPart,
+                                           final long zPart,
+                                           final long seed,
+                                           final int lowerThen,
+                                           final int higherThen){
         rnd.setSeed(xPart + zPart + seed + 10387313);
         int xRand = (rnd.nextInt(27) + rnd.nextInt(27)) / 2;
         if(xRand <= lowerThen || xRand >= higherThen)
@@ -80,7 +84,9 @@ public class StructureMonument extends Structure {
         int[] arrayOfInt = generator.getBiomeData(x1, y1, width, height, true);
         for (int i = 0; i < width * height; i++) {
             Biome localBiome = Biome.biomes[arrayOfInt[i]];
-            if (!validBiomes.contains(localBiome)) return false;
+            if (!validBiomes.contains(localBiome)) {
+                return false;
+            }
         }
         return true;
     }
@@ -97,10 +103,8 @@ public class StructureMonument extends Structure {
      */
     @Override
     public boolean structureWillSpawn(int xRegion, int zRegion, int xRandom, int zRandom, BiomeGenerator generator){
-        if(		24 == generator.getBiomeAt(xRegion * 512 + xRandom * 16 + 8, zRegion * 512 +zRandom * 16 + 8)
-                && isValidBiome(xRegion * 512 + xRandom * 16 + 8, zRegion * 512 +zRandom * 16 + 8, 29, validSurroundingBiomes, generator))
-            return true;
-        return false;
+        return	24 == generator.getBiomeAt(xRegion * 512 + xRandom * 16 + 8, zRegion * 512 +zRandom * 16 + 8)
+                && isValidBiome(xRegion * 512 + xRandom * 16 + 8, zRegion * 512 +zRandom * 16 + 8, 29, validSurroundingBiomes, generator);
     }
 
 }
