@@ -2,8 +2,6 @@ package com.scicraft.seedfinder;
 
 import java.util.HashMap;
 
-
-
 public class Biome {
     public static final HashMap<String,Biome> biomeMap = new HashMap<String,Biome>();
     public static final BiomeType typeA = new BiomeType(0.1F, 0.2F);

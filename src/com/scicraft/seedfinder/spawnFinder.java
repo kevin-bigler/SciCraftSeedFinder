@@ -1,9 +1,9 @@
 package com.scicraft.seedfinder;
 
-import java.util.Random;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ArrayList;
+import java.util.Random;
 
 public class spawnFinder {
 

@@ -1,8 +1,8 @@
 package com.scicraft.seedfinder;
 
-import java.util.Random;
-import java.util.List;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 public class structureMonument extends structure{
     private Random rnd = new Random();

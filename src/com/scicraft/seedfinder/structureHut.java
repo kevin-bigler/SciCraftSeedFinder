@@ -1,6 +1,6 @@
 package com.scicraft.seedfinder;
 
-import java.util.Random;;
+import java.util.Random;
 
 public class structureHut extends structure{
     private Random rnd = new Random();
