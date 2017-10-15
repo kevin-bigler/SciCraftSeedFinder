@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class spawnFinder {
+public class SpawnFinder {
 
     public static final ArrayList<Biome> validBiomes = new ArrayList<Biome>(Arrays.asList(
             Biome.forest,
@@ -17,7 +17,7 @@ public class spawnFinder {
             Biome.jungleHills
         ));
 
-    public static xzPair findValidLocation(int searchX, int searchY, int size, List<Biome> paramList, Random random, biomeGenerator generator) {
+    public static XzPair findValidLocation(int searchX, int searchY, int size, List<Biome> paramList, Random random, BiomeGenerator generator) {
         // TODO: Find out if we should useQuarterResolutionMap or not
         int x1 = searchX - size >> 2;
         int y1 = searchY - size >> 2;
@@ -27,7 +27,7 @@ public class spawnFinder {
         int width = x2 - x1 + 1;
         int height = y2 - y1 + 1;
         int[] arrayOfInt = generator.getBiomeData(x1, y1, width, height, true);
-        xzPair location = null;
+        XzPair location = null;
         int numberOfValidFound = 0;
         for (int i = 0; i < width*height; i++) {
             int x = x1 + i % width << 2;
@@ -37,16 +37,16 @@ public class spawnFinder {
             Biome localBiome = Biome.biomes[arrayOfInt[i]];
             if ((!paramList.contains(localBiome)) || ((location != null) && (random.nextInt(numberOfValidFound + 1) != 0)))
                 continue;
-            location = new xzPair(x, y);
+            location = new XzPair(x, y);
             numberOfValidFound++;
         }
 
         return location;
     }
 
-    public xzPair getSpawnPosition(long seed, biomeGenerator generator) {
+    public XzPair getSpawnPosition(long seed, BiomeGenerator generator) {
         Random random = new Random(seed);
-        xzPair location = findValidLocation(0, 0, 256, validBiomes, random, generator);
+        XzPair location = findValidLocation(0, 0, 256, validBiomes, random, generator);
         int x = 0;
         int z = 0;
         if (location != null) {
@@ -56,6 +56,6 @@ public class spawnFinder {
             return null;
         }
 
-        return new xzPair(x, z);
+        return new XzPair(x, z);
     }
 }

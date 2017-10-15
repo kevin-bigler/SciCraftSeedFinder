@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class strongholdFinder {
+public class StrongholdFinder {
 
-    public static xzPair findValidLocation(int searchX, int searchY, int size, List<Biome> paramList, Random random, biomeGenerator generator) {
+    public static XzPair findValidLocation(int searchX, int searchY, int size, List<Biome> paramList, Random random, BiomeGenerator generator) {
         // TODO: Find out if we should useQuarterResolutionMap or not
         int x1 = searchX - size >> 2;
         int y1 = searchY - size >> 2;
@@ -16,7 +16,7 @@ public class strongholdFinder {
         int width = x2 - x1 + 1;
         int height = y2 - y1 + 1;
         int[] arrayOfInt = generator.getBiomeData(x1, y1, width, height, true);
-        xzPair location = null;
+        XzPair location = null;
         int numberOfValidFound = 0;
         for (int i = 0; i < width*height; i++) {
             int x = x1 + i % width << 2;
@@ -26,15 +26,15 @@ public class strongholdFinder {
             Biome localBiome = Biome.biomes[arrayOfInt[i]];
             if ((!paramList.contains(localBiome)) || ((location != null) && (random.nextInt(numberOfValidFound + 1) != 0)))
                 continue;
-            location = new xzPair(x, y);
+            location = new XzPair(x, y);
             numberOfValidFound++;
         }
 
         return location;
     }
 
-    public xzPair[] findStrongholds(long seed, biomeGenerator generator) {
-        xzPair[] strongholds = new xzPair[3];
+    public XzPair[] findStrongholds(long seed, BiomeGenerator generator) {
+        XzPair[] strongholds = new XzPair[3];
         Random random = new Random();
         random.setSeed(seed);
 
@@ -54,14 +54,14 @@ public class strongholdFinder {
             int z = (int)Math.round(Math.sin(angle) * distance);
 
 
-            xzPair location = findValidLocation((x << 4) + 8, (z << 4) + 8, 112, biomeArrayList,random , generator);
+            XzPair location = findValidLocation((x << 4) + 8, (z << 4) + 8, 112, biomeArrayList,random , generator);
             if(location != null){
                 x = location.getX() >> 4;
                 z = location.getZ() >> 4;
             }
 
 
-            strongholds[i] = new xzPair((x << 4), (z << 4));
+            strongholds[i] = new XzPair((x << 4), (z << 4));
             angle += 6.283185307179586D / 3.0D;
         }
         return strongholds;

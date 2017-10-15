@@ -1,8 +1,8 @@
 package com.scicraft.seedfinder;
 
-public class xzPair {
+public class XzPair {
     private int x, z;
-    public xzPair(int x, int z){
+    public XzPair(int x, int z){
         this.x = x;
         this.z = z;
     }

@@ -4,25 +4,25 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class structureMonument extends structure{
+public class StructureMonument extends Structure {
     private Random rnd = new Random();
 
     /*
-     * return the chunk position in the region of the possible structure
+     * return the chunk position in the region of the possible Structure
      */
-    public xzPair structurePosInRegion(long x, long z, long seed){
+    public XzPair structurePosInRegion(long x, long z, long seed){
         rnd.setSeed((long) x * 341873128712L + (long)z * 132897987541L + seed + 10387313);
-        return new xzPair((rnd.nextInt(27) + rnd.nextInt(27)) / 2 , (rnd.nextInt(27) + rnd.nextInt(27)) / 2);
+        return new XzPair((rnd.nextInt(27) + rnd.nextInt(27)) / 2 , (rnd.nextInt(27) + rnd.nextInt(27)) / 2);
     }
 
     /*
      * first check if the x pos is valid else return null
      */
-    public xzPair structurePosInRegionFast(long xPart, long zPart, long seed, int lowerThen, int higherThen){
+    public XzPair structurePosInRegionFast(long xPart, long zPart, long seed, int lowerThen, int higherThen){
         rnd.setSeed(xPart + zPart + seed + 10387313);
         int xRand = (rnd.nextInt(27) + rnd.nextInt(27)) / 2;
         if(xRand <= lowerThen || xRand >= higherThen)
-            return new xzPair(xRand, (rnd.nextInt(27) + rnd.nextInt(27)) / 2);
+            return new XzPair(xRand, (rnd.nextInt(27) + rnd.nextInt(27)) / 2);
         else
             return null;
     }
@@ -43,7 +43,7 @@ public class structureMonument extends structure{
             }
         );
 
-    public static boolean isValidBiome(int x, int y, int size, List<Biome> validBiomes, biomeGenerator generator) {
+    public static boolean isValidBiome(int x, int y, int size, List<Biome> validBiomes, BiomeGenerator generator) {
         int x1 = x - size >> 2;
         int y1 = y - size >> 2;
         int x2 = x + size >> 2;
@@ -63,9 +63,9 @@ public class structureMonument extends structure{
 
     /*
      * checks if it will spawn
-     * @see com.scicraft.seedfinder.structure#structureWillSpawn(int xRegion, int zRegion, int xRandom, int zRandom, com.scicraft.seedfinder.biomeGenerator)
+     * @see com.scicraft.seedfinder.Structure#structureWillSpawn(int xRegion, int zRegion, int xRandom, int zRandom, com.scicraft.seedfinder.BiomeGenerator)
      */
-    public boolean structureWillSpawn(int xRegion, int zRegion, int xRandom, int zRandom, biomeGenerator generator){
+    public boolean structureWillSpawn(int xRegion, int zRegion, int xRandom, int zRandom, BiomeGenerator generator){
         if(		generator.getBiomeAt(xRegion * 512 + xRandom * 16 + 8, zRegion * 512 +zRandom * 16 + 8) == 24 &&
                 isValidBiome(xRegion * 512 + xRandom * 16 + 8, zRegion * 512 +zRandom * 16 + 8, 29, validSurroundingBiomes, generator))
             return true;

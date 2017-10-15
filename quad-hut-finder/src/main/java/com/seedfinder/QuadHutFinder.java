@@ -1,7 +1,11 @@
 package com.seedfinder;
 
+import com.scicraft.seedfinder.BiomeGenerator;
+import com.scicraft.seedfinder.BitIterator;
+import com.scicraft.seedfinder.StructureHut;
+import com.scicraft.seedfinder.XzPair;
+
 import java.util.Random;
-import com.scicraft.seedfinder.*;
 
 public class QuadHutFinder {
     public final static int TOPRIGHT = 0;
@@ -12,11 +16,11 @@ public class QuadHutFinder {
     public static int[] xpos = new int[4];
     public static int[] zpos = new int[4];
     public static int xmon, zmon;
-    public static structureHut hut;
-    public static bitIterator bitIt;
+    public static StructureHut hut;
+    public static BitIterator bitIt;
 
 
-    public static boolean allSwamp(int[] x, int[] z, biomeGenerator generate)
+    public static boolean allSwamp(int[] x, int[] z, BiomeGenerator generate)
     {
         for(int i = 0; i < 4; i++)
         {
@@ -27,7 +31,7 @@ public class QuadHutFinder {
     }
 
     private static boolean checkForStructureBR(int x, int z, long seed) {
-        xzPair coords = hut.structurePosInRegion(x, z, seed);
+        XzPair coords = hut.structurePosInRegion(x, z, seed);
         int xrand = coords.getX();
         int zrand = coords.getZ();
         xpos[TOPLEFT] = x  * 32 + xrand;
@@ -38,7 +42,7 @@ public class QuadHutFinder {
     }
 
     private static boolean checkForStructureBL(int x, int z, long seed) {
-        xzPair coords = hut.structurePosInRegion(x, z, seed);
+        XzPair coords = hut.structurePosInRegion(x, z, seed);
         int xrand = coords.getX();
         int zrand = coords.getZ();
         xpos[TOPRIGHT] = x  * 32 + xrand;
@@ -48,7 +52,7 @@ public class QuadHutFinder {
     }
 
     private static boolean checkForStructureTR(int x, int z, long seed) {
-        xzPair coords = hut.structurePosInRegion(x, z, seed);
+        XzPair coords = hut.structurePosInRegion(x, z, seed);
         int xrand = coords.getX();
         int zrand = coords.getZ();
         xpos[BOTTOMLEFT] = x  * 32 + xrand;
@@ -58,7 +62,7 @@ public class QuadHutFinder {
     }
 
     private static boolean checkForStructureTL(int x, int z, long seed) {
-        xzPair coords = hut.structurePosInRegion(x, z, seed);
+        XzPair coords = hut.structurePosInRegion(x, z, seed);
         int xrand = coords.getX();
         int zrand = coords.getZ();
         xpos[BOTTOMRIGHT] = x  * 32 + xrand;
@@ -70,7 +74,7 @@ public class QuadHutFinder {
 
     public static void checkBits(long seed) {
         long seedBit = seed & 281474976710655L;	//magic number
-        bitIt = new bitIterator(seedBit);
+        bitIt = new BitIterator(seedBit);
 
 
         System.out.println("checking bits of base " + seedBit);
@@ -81,7 +85,7 @@ public class QuadHutFinder {
 
         while(bitIt.hasNext()){
             long seedFull = bitIt.next();
-            biomeGenerator generate = new biomeGenerator(seedFull, 2);
+            BiomeGenerator generate = new BiomeGenerator(seedFull, 2);
             if(allSwamp(xpos, zpos, generate))
                 System.out.println(seedFull);
         }
@@ -96,7 +100,7 @@ public class QuadHutFinder {
         int radius = 4;
         long currentSeed;
         int xr, zr;
-        hut = new structureHut();
+        hut = new StructureHut();
         for(currentSeed = startSeed; currentSeed <= endSeed; currentSeed++){
 
             for(int x=-radius; x<radius - 1; x+=2) {
@@ -106,7 +110,7 @@ public class QuadHutFinder {
                 for(int z=-radius; z<radius - 1; z+=2) {
 
                     long zPart = hut.zPart(z);
-                    xzPair coords = hut.structurePosInRegionFast(xPart, zPart, currentSeed, 1, 22);
+                    XzPair coords = hut.structurePosInRegionFast(xPart, zPart, currentSeed, 1, 22);
 
                     if(coords != null){
                         xr = coords.getX();
