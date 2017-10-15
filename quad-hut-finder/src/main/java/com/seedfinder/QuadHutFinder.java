@@ -1,7 +1,7 @@
 package com.seedfinder;
 
 import java.util.Random;
-import com.scicraft.seedfinder.structureHut;
+import com.scicraft.seedfinder.*;
 
 public class QuadHutFinder {
     public final static int TOPRIGHT = 0;
