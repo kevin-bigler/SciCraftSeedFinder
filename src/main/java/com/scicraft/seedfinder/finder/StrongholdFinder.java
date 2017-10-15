@@ -64,7 +64,7 @@ public class StrongholdFinder {
             int z = (int)Math.round(Math.sin(angle) * distance);
 
             final XzPair location = findValidLocation((x << 4) + 8, (z << 4) + 8, 112, biomeArrayList,random , generator);
-            if(location != null){
+            if (location != null){
                 x = location.getX() >> 4;
                 z = location.getZ() >> 4;
             }

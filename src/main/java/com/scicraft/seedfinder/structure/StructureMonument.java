@@ -56,7 +56,7 @@ public class StructureMonument extends Structure {
                                            final int higherThen){
         rnd.setSeed(xPart + zPart + seed + 10387313);
         int xRand = (rnd.nextInt(27) + rnd.nextInt(27)) / 2;
-        if(xRand <= lowerThen || xRand >= higherThen) {
+        if (xRand <= lowerThen || xRand >= higherThen) {
             return new XzPair(xRand, (rnd.nextInt(27) + rnd.nextInt(27)) / 2);
         } else {
             return null;

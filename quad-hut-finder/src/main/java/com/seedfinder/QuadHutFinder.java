@@ -21,8 +21,8 @@ public class QuadHutFinder {
 
 
     public static boolean allSwamp(final int[] x, final int[] z, final BiomeGenerator generate) {
-        for(int i = 0; i < 4; i++) {
-            if(generate.getBiomeAt(x[i] * 16 + 8, z[i] * 16 + 8) != 6) {
+        for (int i = 0; i < 4; i++) {
+            if (generate.getBiomeAt(x[i] * 16 + 8, z[i] * 16 + 8) != 6) {
                 return false;
             }
         }
@@ -36,7 +36,6 @@ public class QuadHutFinder {
         xpos[TOPLEFT] = x  * 32 + xrand;
         zpos[TOPLEFT] = z  * 32 + zrand;
 
-
         return xrand >= 22 && zrand >= 22;
     }
 
@@ -47,7 +46,7 @@ public class QuadHutFinder {
         xpos[TOPRIGHT] = x  * 32 + xrand;
         zpos[TOPRIGHT] = z  * 32 + zrand;
 
-        return xrand <=1 && zrand >= 22;
+        return xrand <= 1 && zrand >= 22;
     }
 
     private static boolean checkForStructureTR(final int x, final int z, final long seed) {
@@ -57,7 +56,7 @@ public class QuadHutFinder {
         xpos[BOTTOMLEFT] = x  * 32 + xrand;
         zpos[BOTTOMLEFT] = z  * 32 + zrand;
 
-        return xrand >=22 && zrand <= 1;
+        return xrand >= 22 && zrand <= 1;
     }
 
     private static boolean checkForStructureTL(final int x, final int z, final long seed) {
@@ -67,7 +66,7 @@ public class QuadHutFinder {
         xpos[BOTTOMRIGHT] = x  * 32 + xrand;
         zpos[BOTTOMRIGHT] = z  * 32 + zrand;
 
-        return xrand <=1 && zrand <= 1;
+        return xrand <= 1 && zrand <= 1;
     }
 
     public static void checkBits(final long seed) {
@@ -84,11 +83,10 @@ public class QuadHutFinder {
         while(bitIt.hasNext()){
             final long seedFull = bitIt.next();
             final BiomeGenerator generate = new BiomeGenerator(seedFull, 2);
-            if(allSwamp(xpos, zpos, generate)) {
+            if (allSwamp(xpos, zpos, generate)) {
                 System.out.println(seedFull);
             }
         }
-
     }
 
     public static void main(final String[] args) {
@@ -102,74 +100,73 @@ public class QuadHutFinder {
         int xr;
         int zr;
         hut = new StructureHut();
-        for(long currentSeed = startSeed; currentSeed <= endSeed; currentSeed++){
+        for (long currentSeed = startSeed; currentSeed <= endSeed; currentSeed++){
 
-            for(int x = -radius; x < radius - 1; x += 2) {
+            for (int x = -radius; x < radius - 1; x += 2) {
 
                 final long xPart = hut.xPart(x);
 
-                for(int z = -radius; z < radius - 1; z += 2) {
+                for (int z = -radius; z < radius - 1; z += 2) {
 
                     final long zPart = hut.zPart(z);
                     final XzPair coords = hut.structurePosInRegionFast(xPart, zPart, currentSeed, 1, 22);
 
-                    if(coords != null){
+                    if (coords != null) {
                         xr = coords.getX();
                         zr = coords.getZ();
 
                         if (xr <= 1) {
 
-                            if(zr <= 1) {
+                            if (zr <= 1) {
                                 // candidate witch hut, is in the top left of the 32x32 chunk array
                                 // this means that to be in a quad it would be in bottom right of the quad
 
                                 // check the 32x32 chunk area neighbors to the left and above
-                                if (checkForStructureTR(x-1, z, currentSeed)
-                                        && checkForStructureBR(x-1, z-1, currentSeed)
-                                        && checkForStructureBL(x, z-1, currentSeed)) {
+                                if (checkForStructureTR(x - 1, z, currentSeed)
+                                        && checkForStructureBR(x - 1, z - 1, currentSeed)
+                                        && checkForStructureBL(x, z - 1, currentSeed)) {
                                         xpos[BOTTOMRIGHT] =  x * 32 + xr;
                                         zpos[BOTTOMRIGHT] =  z * 32 + zr;
                                         checkBits(currentSeed);
                                 }
 
-                            } else if(zr >= 22){
+                            } else if (zr >= 22) {
                                 // candidate witch hut, is in the bottom left of the 32x32 chunk array
                                 // this means that to be in a quad it would be in top right of the quad
 
                                 // check the 32x32 chunk area neighbors to the left and below
-                                if (checkForStructureTL(x, z+1, currentSeed)
-                                        && checkForStructureTR(x-1, z+1, currentSeed)
-                                        && checkForStructureBR(x-1, z, currentSeed)) {
-                                        xpos[TOPRIGHT] =  x  * 32 + xr;
-                                        zpos[TOPRIGHT] =  z  * 32 + zr;
+                                if (checkForStructureTL(x, z + 1, currentSeed)
+                                        && checkForStructureTR(x - 1, z + 1, currentSeed)
+                                        && checkForStructureBR(x - 1, z, currentSeed)) {
+                                        xpos[TOPRIGHT] =  x * 32 + xr;
+                                        zpos[TOPRIGHT] =  z * 32 + zr;
                                         checkBits(currentSeed);
                                 }
                             }
 
                         } else {
-                            if(zr <= 1) {
+                            if (zr <= 1) {
                                 // candidate witch hut, is in the top right of the 32x32 chunk array
                                 // this means that to be in a quad it would be in bottom left of the quad
 
                                 // check the 32x32 chunk area neighbors to the right and above
-                                if (checkForStructureBR(x, z-1, currentSeed)
-                                        && checkForStructureBL(x+1, z-1, currentSeed)
-                                        && checkForStructureTL(x+1, z, currentSeed)) {
-                                        xpos[BOTTOMLEFT] =  x  * 32 + xr;
-                                        zpos[BOTTOMLEFT] =  z  * 32 + zr;
+                                if (checkForStructureBR(x, z - 1, currentSeed)
+                                        && checkForStructureBL(x + 1, z - 1, currentSeed)
+                                        && checkForStructureTL(x + 1, z, currentSeed)) {
+                                        xpos[BOTTOMLEFT] =  x * 32 + xr;
+                                        zpos[BOTTOMLEFT] =  z * 32 + zr;
                                         checkBits(currentSeed);
                                 }
-                            }
-                            else if(zr >= 22){
+                            } else if (zr >= 22) {
                                 // candidate witch hut, is in the bottom right of the 32x32 chunk array
                                 // this means that to be in a quad it would be in top left of the quad
 
                                 // check the 32x32 chunk area neighbors to the right and below
-                                if (checkForStructureBL(x+1, z, currentSeed)
-                                        && checkForStructureTL(x+1, z+1, currentSeed)
-                                        && checkForStructureTR(x, z+1, currentSeed)) {
-                                        xpos[TOPLEFT] =  x  * 32 + xr;
-                                        zpos[TOPLEFT] =  z  * 32 + zr;
+                                if (checkForStructureBL(x + 1, z, currentSeed)
+                                        && checkForStructureTL(x + 1, z + 1, currentSeed)
+                                        && checkForStructureTR(x, z + 1, currentSeed)) {
+                                        xpos[TOPLEFT] =  x * 32 + xr;
+                                        zpos[TOPLEFT] =  z * 32 + zr;
                                         checkBits(currentSeed);
                                 }
                             }

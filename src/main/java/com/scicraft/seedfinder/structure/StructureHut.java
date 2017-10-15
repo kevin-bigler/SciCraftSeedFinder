@@ -42,7 +42,7 @@ public class StructureHut extends Structure {
                                            final int higherThen){
         rnd.setSeed(xPart + zPart + seed + 14357617);
         final int xRand = rnd.nextInt(24);
-        if(xRand <= lowerThen || xRand >= higherThen) {
+        if (xRand <= lowerThen || xRand >= higherThen) {
             return new XzPair(xRand, rnd.nextInt(24));
         } else {
             return null;
