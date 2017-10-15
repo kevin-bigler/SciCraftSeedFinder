@@ -12,3 +12,14 @@ repositories {
 dependencies {
     compile rootProject
 }
+
+jar {
+    from {
+        (configurations.runtime).collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+    manifest {
+        attributes 'Main-Class': 'com.seedfinder.QuadHutFinder'
+    }
+}
