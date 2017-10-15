@@ -1,0 +1,15 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.minecraft'
+version = '1.0.0'
+description = 'I do not know where this came from... it may actually be from Minecraft source code... question mark?' +
+        'If so, I do not know what version.'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+}

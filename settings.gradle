@@ -1,1 +1,3 @@
 rootProject.name = 'SciCraftSeedFinder'
+include 'minecraft'
+include 'quad-hut-finder'

@@ -1,8 +1,8 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 
-group = ''
-version = ''
+group = 'com.scicraft.seedfinder'
+version = '1.0.0'
 description = ''
 
 sourceCompatibility = 1.8
@@ -13,5 +13,6 @@ repositories {
 }
 
 dependencies {
+    compile project(':minecraft')
     compile 'com.google.guava:guava:17.0'
 }

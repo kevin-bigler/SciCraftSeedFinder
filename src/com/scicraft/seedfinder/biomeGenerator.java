@@ -1,7 +1,5 @@
 package com.scicraft.seedfinder;
 
-import minecraft.layer.*;
-
 public class biomeGenerator {
 	public GenLayer biomeIndexLayer;
 	public GenLayer biomeIndexLayerquarter;
