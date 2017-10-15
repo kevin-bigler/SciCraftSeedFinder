@@ -167,8 +167,8 @@ public abstract class GenLayer
             }
             catch (Throwable var7)
             {
-            	System.err.println("Error in biomesEqualOrMesaPlateau()");
-            	return false;
+                System.err.println("Error in biomesEqualOrMesaPlateau()");
+                return false;
             }
         }
         else
