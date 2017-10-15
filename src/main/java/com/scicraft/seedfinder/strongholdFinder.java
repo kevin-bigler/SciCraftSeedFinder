@@ -6,7 +6,6 @@ import java.util.Random;
 
 public class strongholdFinder {
 
-
     public static xzPair findValidLocation(int searchX, int searchY, int size, List<Biome> paramList, Random random, biomeGenerator generator) {
         // TODO: Find out if we should useQuarterResolutionMap or not
         int x1 = searchX - size >> 2;
