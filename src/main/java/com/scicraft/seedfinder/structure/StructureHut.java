@@ -1,4 +1,7 @@
-package com.scicraft.seedfinder;
+package com.scicraft.seedfinder.structure;
+
+import com.scicraft.seedfinder.BiomeGenerator;
+import com.scicraft.seedfinder.model.XzPair;
 
 import java.util.Random;
 

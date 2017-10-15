@@ -2,8 +2,8 @@ package com.seedfinder;
 
 import com.scicraft.seedfinder.BiomeGenerator;
 import com.scicraft.seedfinder.BitIterator;
-import com.scicraft.seedfinder.StructureHut;
-import com.scicraft.seedfinder.XzPair;
+import com.scicraft.seedfinder.structure.StructureHut;
+import com.scicraft.seedfinder.model.XzPair;
 
 import java.util.Random;
 
@@ -71,7 +71,6 @@ public class QuadHutFinder {
         return xrand <=1 && zrand <= 1;
     }
 
-
     public static void checkBits(long seed) {
         long seedBit = seed & 281474976710655L;	//magic number
         bitIt = new BitIterator(seedBit);
@@ -91,7 +90,6 @@ public class QuadHutFinder {
         }
 
     }
-
 
     public static void main(String[] args) {
         long startSeed = 278827814000L; //Long.parseLong(args[0]);

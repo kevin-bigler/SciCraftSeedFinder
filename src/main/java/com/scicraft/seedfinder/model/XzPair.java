@@ -1,4 +1,4 @@
-package com.scicraft.seedfinder;
+package com.scicraft.seedfinder.model;
 
 public class XzPair {
     private int x, z;

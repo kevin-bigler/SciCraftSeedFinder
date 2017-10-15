@@ -14,5 +14,5 @@ repositories {
 
 dependencies {
     compile project(':minecraft')
-    compile 'com.google.guava:guava:17.0'
+    compile 'org.projectlombok:lombok-maven:1.16.18.1'
 }

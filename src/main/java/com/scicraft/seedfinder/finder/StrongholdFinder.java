@@ -1,4 +1,8 @@
-package com.scicraft.seedfinder;
+package com.scicraft.seedfinder.finder;
+
+import com.scicraft.seedfinder.Biome;
+import com.scicraft.seedfinder.BiomeGenerator;
+import com.scicraft.seedfinder.model.XzPair;
 
 import java.util.ArrayList;
 import java.util.List;

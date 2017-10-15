@@ -20,8 +20,10 @@ public class BitIterator {
         return this.current < this.baseEnd;
     }
 
-    /*
+    /**
      * return the next modified seed
+     *
+     * @return
      */
     @SuppressWarnings("null")
     public long next(){
