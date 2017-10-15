@@ -31,8 +31,8 @@ public class BitIterator {
         if(hasNext()){
             current++;
             return (long)baseSeed ^ ((long)current << 48);
-        } else
+        } else {
             return (Long) null;
-
+        }
     }
 }

@@ -36,7 +36,7 @@ public class SpawnFinder {
         final int width = x2 - x1 + 1;
         final int height = y2 - y1 + 1;
         final int[] arrayOfInt = generator.getBiomeData(x1, y1, width, height, true);
-        final XzPair location = null;
+        XzPair location = null;
         int numberOfValidFound = 0;
         for (int i = 0; i < width*height; i++) {
             final int x = x1 + i % width << 2;
@@ -57,8 +57,8 @@ public class SpawnFinder {
     public XzPair getSpawnPosition(final long seed, final BiomeGenerator generator) {
         final Random random = new Random(seed);
         final XzPair location = findValidLocation(0, 0, 256, validBiomes, random, generator);
-        final int x = 0;
-        final int z = 0;
+        int x = 0;
+        int z = 0;
         if (location != null) {
             x = location.getX();
             z = location.getZ();

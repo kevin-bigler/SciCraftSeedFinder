@@ -29,9 +29,10 @@ public class BiomeGenerator {
 
     public int[] getBiomeData(final int x, final int y, final int width, final int height, final boolean quarter) {
         IntCache.resetIntCache();
-        if(quarter)
+        if(quarter) {
             return biomeIndexLayerquarter.getInts(x, y, width, height);
-        else
+        } else {
             return biomeIndexLayer.getInts(x, y, width, height);
+        }
     }
 }

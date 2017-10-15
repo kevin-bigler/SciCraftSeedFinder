@@ -25,7 +25,7 @@ public class StrongholdFinder {
         final int width = x2 - x1 + 1;
         final int height = y2 - y1 + 1;
         final int[] arrayOfInt = generator.getBiomeData(x1, y1, width, height, true);
-        final XzPair location = null;
+        XzPair location = null;
         int numberOfValidFound = 0;
         for (int i = 0; i < width*height; i++) {
             final int x = x1 + i % width << 2;
@@ -60,8 +60,8 @@ public class StrongholdFinder {
         double angle = random.nextDouble() * 3.141592653589793D * 2.0D;
         for (int i = 0; i < 3; i++) {
             final double distance = (1.25D + random.nextDouble()) * 32.0D;
-            final int x = (int)Math.round(Math.cos(angle) * distance);
-            final int z = (int)Math.round(Math.sin(angle) * distance);
+            int x = (int)Math.round(Math.cos(angle) * distance);
+            int z = (int)Math.round(Math.sin(angle) * distance);
 
             final XzPair location = findValidLocation((x << 4) + 8, (z << 4) + 8, 112, biomeArrayList,random , generator);
             if(location != null){

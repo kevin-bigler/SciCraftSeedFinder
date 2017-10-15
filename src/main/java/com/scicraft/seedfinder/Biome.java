@@ -1,5 +1,7 @@
 package com.scicraft.seedfinder;
 
+import lombok.AllArgsConstructor;
+
 import java.util.HashMap;
 
 public class Biome {
@@ -123,18 +125,19 @@ public class Biome {
     }
 
     public static int indexFromName(final String name) {
-        Biome biome = biomeMap.get(name);
+        final Biome biome = biomeMap.get(name);
         if (biome != null)
             return biome.index;
         return -1;
     }
 
-    public static final class BiomeType { // TODO: Rename once we figure out what this actually is!
-        public float value1, value2;
-        public BiomeType(float value1, float value2) {
-            this.value1 = value1;
-            this.value2 = value2;
-        }
+    /**
+     * TODO: Rename once we figure out what this actually is!
+     */
+    @AllArgsConstructor
+    public static final class BiomeType {
+        public float value1;
+        public float value2;
 
         public BiomeType getExtreme() {
             return new BiomeType(value1 * 0.8F, value2 * 0.6F);
