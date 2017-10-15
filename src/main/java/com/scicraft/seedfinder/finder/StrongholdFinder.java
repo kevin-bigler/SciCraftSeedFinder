@@ -27,11 +27,12 @@ public class StrongholdFinder {
         final int[] arrayOfInt = generator.getBiomeData(x1, y1, width, height, true);
         XzPair location = null;
         int numberOfValidFound = 0;
-        for (int i = 0; i < width*height; i++) {
+        for (int i = 0; i < width * height; i++) {
             final int x = x1 + i % width << 2;
             final int y = y1 + i / width << 2;
-            if (arrayOfInt[i] > Biome.biomes.length)
+            if (arrayOfInt[i] > Biome.biomes.length) {
                 return null;
+            }
             final Biome localBiome = Biome.biomes[arrayOfInt[i]];
             if ((!paramList.contains(localBiome)) || ((location != null) && (random.nextInt(numberOfValidFound + 1) != 0))) {
                 continue;

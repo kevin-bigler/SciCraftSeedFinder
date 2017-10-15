@@ -19,7 +19,6 @@ public class QuadHutFinder {
     public static StructureHut hut;
     public static BitIterator bitIt;
 
-
     public static boolean allSwamp(final int[] x, final int[] z, final BiomeGenerator generate) {
         for (int i = 0; i < 4; i++) {
             if (generate.getBiomeAt(x[i] * 16 + 8, z[i] * 16 + 8) != 6) {

@@ -11,6 +11,7 @@ public class StructureHut extends Structure {
 
     /**
      * return the chunk position in the region of the possible Structure
+     * TODO change this to return Optional as well
      *
      * @param x
      * @param z
@@ -19,7 +20,7 @@ public class StructureHut extends Structure {
      */
     @Override
     public XzPair structurePosInRegion(final long x, final long z, final long seed){
-        rnd.setSeed((long) x * 341873128712L + (long)z * 132897987541L + seed + 14357617);
+        rnd.setSeed((long) x * 341873128712L + (long) z * 132897987541L + seed + 14357617);
         return new XzPair(rnd.nextInt(24), rnd.nextInt(24));
     }
 
@@ -65,7 +66,7 @@ public class StructureHut extends Structure {
                                       final int xRandom,
                                       final int zRandom,
                                       final BiomeGenerator generator){
-        return 6 == generator.getBiomeAt(xRegion * 512 + xRandom * 16 + 8, zRegion * 512 +zRandom * 16 + 8);
+        return 6 == generator.getBiomeAt(xRegion * 512 + xRandom * 16 + 8, zRegion * 512 + zRandom * 16 + 8);
     }
 
 }

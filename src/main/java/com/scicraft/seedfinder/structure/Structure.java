@@ -24,7 +24,9 @@ public abstract class Structure {
         return (long) z * 132897987541L;
     }
 
+    // TODO change this to return an  {@link java.util.Optional<XzPair>}; return {@link Optional#empty()} if no result
     public abstract XzPair structurePosInRegion(long x, long z, long seed);
+    // TODO change this to return an  {@link java.util.Optional<XzPair>}; return {@link Optional#empty()} if no result
     public abstract XzPair structurePosInRegionFast(long xPart, long zPart, long seed, int lowerThen, int higherThen);
     public abstract boolean structureWillSpawn(int xRegion, int zRegion, int xRandom, int zRandom, BiomeGenerator generator);
 }

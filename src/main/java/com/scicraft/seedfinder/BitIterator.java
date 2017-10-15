@@ -16,12 +16,13 @@ public class BitIterator implements Iterator<Long> {
      *
      * @param baseSeed
      */
-    public BitIterator(final long baseSeed){
+    public BitIterator(final long baseSeed) {
         //magic number check it in binary this removes the first 16 bits
         this.baseSeed = baseSeed & 281474976710655L;
         this.current = 0;
     }
 
+    @Override
     public boolean hasNext(){
         return this.current < this.baseEnd;
     }
@@ -31,7 +32,8 @@ public class BitIterator implements Iterator<Long> {
      *
      * @return
      */
-    public Long next(){
+    @Override
+    public Long next() {
         if (!hasNext()) {
             throw new IllegalStateException(BIT_ITER_ERROR_NO_NEXT);
         }

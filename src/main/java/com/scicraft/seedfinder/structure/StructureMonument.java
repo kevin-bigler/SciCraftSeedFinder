@@ -6,6 +6,7 @@ import com.scicraft.seedfinder.model.XzPair;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 public class StructureMonument extends Structure {
@@ -26,6 +27,7 @@ public class StructureMonument extends Structure {
 
     /**
      * return the chunk position in the region of the possible Structure
+     * TODO change this to return an  {@link java.util.Optional<XzPair>}; return {@link Optional#empty()} if no result
      *
      * @param x
      * @param z
@@ -34,12 +36,13 @@ public class StructureMonument extends Structure {
      */
     @Override
     public XzPair structurePosInRegion(final long x, final long z, final long seed){
-        rnd.setSeed((long) x * 341873128712L + (long)z * 132897987541L + seed + 10387313);
+        rnd.setSeed((long) x * 341873128712L + (long) z * 132897987541L + seed + 10387313);
         return new XzPair((rnd.nextInt(27) + rnd.nextInt(27)) / 2 , (rnd.nextInt(27) + rnd.nextInt(27)) / 2);
     }
 
     /**
      * first check if the x pos is valid else return null
+     * TODO change this to return an  {@link java.util.Optional<XzPair>}; return {@link Optional#empty()} if no result
      *
      * @param xPart
      * @param zPart
@@ -55,7 +58,7 @@ public class StructureMonument extends Structure {
                                            final int lowerThen,
                                            final int higherThen){
         rnd.setSeed(xPart + zPart + seed + 10387313);
-        int xRand = (rnd.nextInt(27) + rnd.nextInt(27)) / 2;
+        final int xRand = (rnd.nextInt(27) + rnd.nextInt(27)) / 2;
         if (xRand <= lowerThen || xRand >= higherThen) {
             return new XzPair(xRand, (rnd.nextInt(27) + rnd.nextInt(27)) / 2);
         } else {
@@ -112,8 +115,8 @@ public class StructureMonument extends Structure {
                                       final int xRandom,
                                       final int zRandom,
                                       final BiomeGenerator generator){
-        return	24 == generator.getBiomeAt(xRegion * 512 + xRandom * 16 + 8, zRegion * 512 +zRandom * 16 + 8)
-                && isValidBiome(xRegion * 512 + xRandom * 16 + 8, zRegion * 512 +zRandom * 16 + 8, 29, validSurroundingBiomes, generator);
+        return	24 == generator.getBiomeAt(xRegion * 512 + xRandom * 16 + 8, zRegion * 512 + zRandom * 16 + 8)
+                && isValidBiome(xRegion * 512 + xRandom * 16 + 8, zRegion * 512 + zRandom * 16 + 8, 29, validSurroundingBiomes, generator);
     }
 
 }
