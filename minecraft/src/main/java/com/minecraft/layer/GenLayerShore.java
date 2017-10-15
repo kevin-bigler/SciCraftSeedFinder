@@ -1,8 +1,8 @@
 package com.minecraft.layer;
 
-import minecraft.biome.BiomeGenBase;
-import minecraft.biome.BiomeGenJungle;
-import minecraft.biome.BiomeGenMesa;
+import com.minecraft.biome.BiomeGenBase;
+import com.minecraft.biome.BiomeGenJungle;
+import com.minecraft.biome.BiomeGenMesa;
 
 public class GenLayerShore extends GenLayer
 {

@@ -1,6 +1,6 @@
 package com.minecraft.layer;
 
-import minecraft.biome.BiomeGenBase;
+import com.minecraft.biome.BiomeGenBase;
 
 public class GenLayerBiome extends GenLayer
 {
