@@ -53,17 +53,16 @@ public class StrongholdFinder {
             int x = (int)Math.round(Math.cos(angle) * distance);
             int z = (int)Math.round(Math.sin(angle) * distance);
 
-
             XzPair location = findValidLocation((x << 4) + 8, (z << 4) + 8, 112, biomeArrayList,random , generator);
             if(location != null){
                 x = location.getX() >> 4;
                 z = location.getZ() >> 4;
             }
 
-
             strongholds[i] = new XzPair((x << 4), (z << 4));
             angle += 6.283185307179586D / 3.0D;
         }
+
         return strongholds;
     }
 }

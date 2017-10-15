@@ -1,15 +1,21 @@
 package com.scicraft.seedfinder;
 
 public abstract class Structure {
-    /*
+    /**
      * generate the xpart of the equation
+     *
+     * @param x
+     * @return
      */
     public long xPart(int x){
         return (long) x * 341873128712L;
     }
 
-    /*
+    /**
      * generate the zpart of the equation
+     *
+     * @param z
+     * @return
      */
     public long zPart(int z){
         return (long) z * 132897987541L;

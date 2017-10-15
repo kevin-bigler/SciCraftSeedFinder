@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class SpawnFinder {
 
-    public static final ArrayList<Biome> validBiomes = new ArrayList<Biome>(Arrays.asList(
+    public static final ArrayList<Biome> validBiomes = new ArrayList<>(Arrays.asList(
             Biome.forest,
             Biome.plains,
             Biome.taiga,

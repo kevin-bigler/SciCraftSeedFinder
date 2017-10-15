@@ -6,17 +6,42 @@ import java.util.Random;
 
 public class StructureMonument extends Structure {
     private Random rnd = new Random();
+    public static List<Biome> validSurroundingBiomes = Arrays.asList(
+                    Biome.ocean,
+                    Biome.deepOcean,
+                    Biome.frozenOcean,
+                    Biome.river,
+                    Biome.frozenRiver,
+                    // Not sure if the extended biomes count
+                    Biome.oceanM,
+                    Biome.deepOceanM,
+                    Biome.frozenOceanM,
+                    Biome.riverM,
+                    Biome.frozenRiverM
+    );
 
-    /*
+    /**
      * return the chunk position in the region of the possible Structure
+     *
+     * @param x
+     * @param z
+     * @param seed
+     * @return
      */
     public XzPair structurePosInRegion(long x, long z, long seed){
         rnd.setSeed((long) x * 341873128712L + (long)z * 132897987541L + seed + 10387313);
         return new XzPair((rnd.nextInt(27) + rnd.nextInt(27)) / 2 , (rnd.nextInt(27) + rnd.nextInt(27)) / 2);
     }
 
-    /*
+    /**
      * first check if the x pos is valid else return null
+     *
+     * @param xPart
+     * @param zPart
+     * @param seed
+     * @param lowerThen
+     * @param higherThen
+     * @return
      */
     public XzPair structurePosInRegionFast(long xPart, long zPart, long seed, int lowerThen, int higherThen){
         rnd.setSeed(xPart + zPart + seed + 10387313);
@@ -27,22 +52,16 @@ public class StructureMonument extends Structure {
             return null;
     }
 
-    public static List<Biome> validSurroundingBiomes = Arrays.asList(
-            new Biome[] {
-                Biome.ocean,
-                Biome.deepOcean,
-                Biome.frozenOcean,
-                Biome.river,
-                Biome.frozenRiver,
-                // Not sure if the extended biomes count
-                Biome.oceanM,
-                Biome.deepOceanM,
-                Biome.frozenOceanM,
-                Biome.riverM,
-                Biome.frozenRiverM,
-            }
-        );
-
+    /**
+     *
+     *
+     * @param x
+     * @param y
+     * @param size
+     * @param validBiomes
+     * @param generator
+     * @return
+     */
     public static boolean isValidBiome(int x, int y, int size, List<Biome> validBiomes, BiomeGenerator generator) {
         int x1 = x - size >> 2;
         int y1 = y - size >> 2;
@@ -60,14 +79,20 @@ public class StructureMonument extends Structure {
         return true;
     }
 
-
-    /*
+    /**
      * checks if it will spawn
-     * @see com.scicraft.seedfinder.Structure#structureWillSpawn(int xRegion, int zRegion, int xRandom, int zRandom, com.scicraft.seedfinder.BiomeGenerator)
+     * see {@link Structure#structureWillSpawn(int, int, int, int, BiomeGenerator)}
+     *
+     * @param xRegion
+     * @param zRegion
+     * @param xRandom
+     * @param zRandom
+     * @param generator
+     * @return
      */
     public boolean structureWillSpawn(int xRegion, int zRegion, int xRandom, int zRandom, BiomeGenerator generator){
-        if(		generator.getBiomeAt(xRegion * 512 + xRandom * 16 + 8, zRegion * 512 +zRandom * 16 + 8) == 24 &&
-                isValidBiome(xRegion * 512 + xRandom * 16 + 8, zRegion * 512 +zRandom * 16 + 8, 29, validSurroundingBiomes, generator))
+        if(		24 == generator.getBiomeAt(xRegion * 512 + xRandom * 16 + 8, zRegion * 512 +zRandom * 16 + 8)
+                && isValidBiome(xRegion * 512 + xRandom * 16 + 8, zRegion * 512 +zRandom * 16 + 8, 29, validSurroundingBiomes, generator))
             return true;
         return false;
     }

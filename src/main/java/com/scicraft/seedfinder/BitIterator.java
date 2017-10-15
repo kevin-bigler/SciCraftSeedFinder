@@ -4,10 +4,12 @@ public class BitIterator {
     private long baseSeed, current;
     private long baseEnd = 65536;
 
-    /*
+    /**
      * insert potential seed to do whatever with first 16 bits this class iterates over all of them
      * use this class to for example to check biomes
      * use this as a normal iterator: while(hasNext()){BitIterator.next()}
+     *
+     * @param baseSeed
      */
     public BitIterator(long baseSeed){
         this.baseSeed = baseSeed & 281474976710655L;	//magic number check it in binary this removes the first 16 bits

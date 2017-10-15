@@ -6,6 +6,7 @@ import com.minecraft.layer.IntCache;
 public class BiomeGenerator {
     public GenLayer biomeIndexLayer;
     public GenLayer biomeIndexLayerquarter;
+
     public BiomeGenerator(long seed, int quarter)
     {
         if(quarter == 0)
