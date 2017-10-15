@@ -5,7 +5,7 @@ import com.minecraft.layer.IntCache;
 
 public class BiomeGenerator {
     public GenLayer biomeIndexLayer;
-    public GenLayer biomeIndexLayerquarter;
+    public GenLayer biomeIndexLayerQuarter;
 
     public BiomeGenerator(final long seed, final int quarter) {
         if (quarter == 0) {
@@ -13,11 +13,11 @@ public class BiomeGenerator {
             biomeIndexLayer = GenLayer.func_180781_a(seed, "")[1];
         } else if (quarter == 1) {
             // 1:4 fourth resolution less calculations
-            biomeIndexLayerquarter = GenLayer.func_180781_a(seed, "")[0];
+            biomeIndexLayerQuarter = GenLayer.func_180781_a(seed, "")[0];
         } else {
             // 1:4 fourth resolution less calculations
             biomeIndexLayer = GenLayer.func_180781_a(seed, null)[1];
-            biomeIndexLayerquarter = GenLayer.func_180781_a(seed, "")[0];
+            biomeIndexLayerQuarter = GenLayer.func_180781_a(seed, "")[0];
         }
 
     }
@@ -30,7 +30,7 @@ public class BiomeGenerator {
     public int[] getBiomeData(final int x, final int y, final int width, final int height, final boolean quarter) {
         IntCache.resetIntCache();
         if(quarter) {
-            return biomeIndexLayerquarter.getInts(x, y, width, height);
+            return biomeIndexLayerQuarter.getInts(x, y, width, height);
         } else {
             return biomeIndexLayer.getInts(x, y, width, height);
         }
