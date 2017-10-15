@@ -1,0 +1,14 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.seedfinder'
+version = '1.0.0'
+description = 'Quad Witch Hut Finder'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile rootProject
+}
