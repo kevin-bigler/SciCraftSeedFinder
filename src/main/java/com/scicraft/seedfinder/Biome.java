@@ -126,9 +126,11 @@ public class Biome {
 
     public static int indexFromName(final String name) {
         final Biome biome = biomeMap.get(name);
-        if (biome != null)
+        if (biome != null) {
             return biome.index;
-        return -1;
+        } else {
+            return -1;
+        }
     }
 
     /**

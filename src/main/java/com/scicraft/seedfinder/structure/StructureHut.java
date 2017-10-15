@@ -3,6 +3,7 @@ package com.scicraft.seedfinder.structure;
 import com.scicraft.seedfinder.BiomeGenerator;
 import com.scicraft.seedfinder.model.XzPair;
 
+import java.util.Optional;
 import java.util.Random;
 
 public class StructureHut extends Structure {
@@ -24,6 +25,7 @@ public class StructureHut extends Structure {
 
     /**
      * first check if the x pos is valid else return null
+     * TODO change this to return an  {@link java.util.Optional<XzPair>}; return {@link Optional#empty()} if no result
      *
      * @param xPart
      * @param zPart

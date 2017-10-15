@@ -1,7 +1,12 @@
 package com.scicraft.seedfinder;
 
-public class BitIterator {
-    private long baseSeed, current;
+import java.util.Iterator;
+
+import static com.scicraft.seedfinder.constants.MessageConstant.BIT_ITER_ERROR_NO_NEXT;
+
+public class BitIterator implements Iterator<Long> {
+    private long baseSeed;
+    private long current;
     private long baseEnd = 65536;
 
     /**
@@ -26,13 +31,12 @@ public class BitIterator {
      *
      * @return
      */
-    @SuppressWarnings("null")
-    public long next(){
-        if(hasNext()){
-            current++;
-            return (long)baseSeed ^ ((long)current << 48);
-        } else {
-            return (Long) null;
+    public Long next(){
+        if (!hasNext()) {
+            throw new IllegalStateException(BIT_ITER_ERROR_NO_NEXT);
         }
+
+        current++;
+        return (long) baseSeed ^ ((long) current << 48);
     }
 }
